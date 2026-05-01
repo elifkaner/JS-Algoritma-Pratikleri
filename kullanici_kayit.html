@@ -65,7 +65,6 @@
                 }
 
             } else if (secim == 2) {
-                // --- YENİ KAYIT OLUŞTURMA KISMI BURADAN BAŞLIYOR ---
                 yazdir("*** Yeni Kayıt Oluştur ***");
                 yazdir("");
 
@@ -73,8 +72,7 @@
                 var yeniSifre = prompt("Şifrenizi Belirleyin: ");
                 var yeniAd = prompt("Adınız: ");
                 var yeniYas = prompt("Yaşınız: ");
-
-                // Yeni kullanıcı objesini oluşturuyoruz
+                
                 var yeniKullanici = {
                     kullaniciAdi: yeniKullaniciAdi,
                     sifre: yeniSifre,
@@ -82,14 +80,13 @@
                     yas: yeniYas
                 };
 
-                // Mevcut diziye yeni kullanıcıyı ekliyoruz
                 kullanicilar.push(yeniKullanici);
 
                 yazdir("*** Kayıt İşlemi Başarıyla Tamamlandı! ***");
                 yazdir("");
 
                 yazdir("*** Güncel Kullanıcı Listesi: ***");
-                // Güncel listeyi tekrar yazdırıyoruz (i < kullanicilar.length olduğuna dikkat!)
+                
                 for (var i = 0; i < kullanicilar.length; i++) {
                     yazdir((i + 1) + ". Kullanıcı " + kullanicilar[i].ad + " (@" + kullanicilar[i].kullaniciAdi + ")");
                 }
