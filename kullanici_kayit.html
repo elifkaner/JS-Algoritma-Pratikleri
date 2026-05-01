@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Kayıt Sistemi</title>
+</head>
+
+<body>
+    <script>
+        function yazdir(text) {
+            console.log(text);
+        }
+
+        function kullaniciKayitSistemi() {
+            yazdir("*** Kullanıcı Kayıt Sistemine Hoşgeldiniz! ***");
+            yazdir("");
+
+            var kullanicilar = [
+                { kullaniciAdi: "ahmetavc", sifre: "1234", ad: "Ahmet", yas: "27" },
+                { kullaniciAdi: "burcud", sifre: "1234", ad: "Burcu", yas: "20" },
+                { kullaniciAdi: "elifk", sifre: "1234", ad: "Elif", yas: "19" },
+                { kullaniciAdi: "sedefe", sifre: "1234", ad: "Sedef", yas: "20" }
+            ];
+
+            yazdir("*** Sistemde Kayıtlı Olan Kullanıcılar: ***");
+            for (var i = 0; i < kullanicilar.length; i++) {
+                yazdir((i + 1) + ". Kullanıcı " + kullanicilar[i].ad + " (@" + kullanicilar[i].kullaniciAdi + ")");
+            }
+
+            yazdir("");
+            yazdir("*** Menü ***");
+            yazdir("*** 1 - Giriş Yap  ***");
+            yazdir("*** 2 - Yeni Kayıt Oluştur  ***");
+
+            var secim = prompt("Seçiminizi Yapınız: (1 veya 2): ");
+            secim = parseInt(secim);
+
+            if (secim == 1) {
+                yazdir("*** Giriş Yap ***");
+                yazdir("");
+
+                var kullaniciAdi = prompt("Kullanıcı Adınızı Giriniz: ");
+                var sifre = prompt("Şifrenizi giriniz: ");
+                var girisBasariliMi = false;
+
+                for (var i = 0; i < kullanicilar.length; i++) {
+                    if (kullanicilar[i].kullaniciAdi == kullaniciAdi) {
+                        if (kullanicilar[i].sifre == sifre) {
+                            yazdir("*** Giriş Başarılı ***");
+                            yazdir("*** Hoşgeldin " + kullanicilar[i].ad);
+                            yazdir("*** Yaşınız: " + kullanicilar[i].yas);
+                            girisBasariliMi = true;
+                        } else {
+                            yazdir("*** Giriş Başarısız! ***");
+                            yazdir("*** Şifreyi Yanlış Girdiniz... ***");
+                            girisBasariliMi = true;
+                        }
+                    }
+                }
+
+                if (girisBasariliMi == false) {
+                    yazdir("*** Kullanıcı Bulunamadı! ***");
+                }
+
+            } else if (secim == 2) {
+                // --- YENİ KAYIT OLUŞTURMA KISMI BURADAN BAŞLIYOR ---
+                yazdir("*** Yeni Kayıt Oluştur ***");
+                yazdir("");
+
+                var yeniKullaniciAdi = prompt("Yeni Kullanıcı Adınızı Belirleyin: ");
+                var yeniSifre = prompt("Şifrenizi Belirleyin: ");
+                var yeniAd = prompt("Adınız: ");
+                var yeniYas = prompt("Yaşınız: ");
+
+                // Yeni kullanıcı objesini oluşturuyoruz
+                var yeniKullanici = {
+                    kullaniciAdi: yeniKullaniciAdi,
+                    sifre: yeniSifre,
+                    ad: yeniAd,
+                    yas: yeniYas
+                };
+
+                // Mevcut diziye yeni kullanıcıyı ekliyoruz
+                kullanicilar.push(yeniKullanici);
+
+                yazdir("*** Kayıt İşlemi Başarıyla Tamamlandı! ***");
+                yazdir("");
+
+                yazdir("*** Güncel Kullanıcı Listesi: ***");
+                // Güncel listeyi tekrar yazdırıyoruz (i < kullanicilar.length olduğuna dikkat!)
+                for (var i = 0; i < kullanicilar.length; i++) {
+                    yazdir((i + 1) + ". Kullanıcı " + kullanicilar[i].ad + " (@" + kullanicilar[i].kullaniciAdi + ")");
+                }
+            } else {
+                yazdir("Geçersiz bir seçim yaptınız.");
+            }
+        }
+
+        kullaniciKayitSistemi();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function yazdir(text) {
+            console.log(text);
+        }
+
+
+        function restoranSiparisUygulamasi() {
+            yazdir("** RESTORAN SİPARİŞ SİSTEMİ *** ");
+            yazdir("");
+
+
+            var menu = [
+                { id: 1, isim: "Hamburger", fiyat: 45 },
+                { id: 2, isim: "Pizza", fiyat: 60 },
+                { id: 3, isim: "Patates Kızartması", fiyat: 20 },
+                { id: 4, isim: "İçecek", fiyat: 10 },
+                { id: 5, isim: "Salata", fiyat: 25 },
+            ];
+
+            yazdir("*** MENÜ:***");
+
+            for (var i = 0; i < menu.length; i++) {
+                yazdir((i + 1) + ". " + menu[i].isim + "- " + menu[i].fiyat + " TL");
+            }
+
+            yazdir("");
+
+            var siparisler = [];
+
+            var devam = true;
+
+            while (devam) {
+                var siparisNo = prompt("Sipariş etmek istediğiniz ürünün numarasını giriniz: (Bitirmek için 0) ");
+                siparisNo = parseInt(siparisNo);
+                if (siparisNo === 0) {
+                    devam = false;
+                } else {
+                    var siparisAdet = prompt("Kaç adet sipariş vermek istiyorsunuz? ");
+                    siparisAdet = parseInt(siparisAdet);
+                    yazdir("Verilen Siparişin Nosu ve Adeti: " + siparisNo + "      " + siparisAdet);
+
+                    for (var i = 0; i < menu.length; i++) {
+                        if (menu[i].id === siparisNo) {
+                            var siparis = {
+                                isim: menu[i].isim,
+                                fiyat: menu[i].fiyat,
+                                adet: siparisAdet,
+                                toplam: menu[i].fiyat * siparisAdet
+                            };
+                            siparisler.push(siparis);
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+
+            yazdir("*** SİPARİŞ ÖZETİ ***");
+            yazdir("");
+
+            if (siparisler.length === 0) {
+                yazdir("Sipariş Vermediniz!");
+
+            } else {
+                for (var i = 0; i < siparisler.length; i++) {
+                    yazdir((i + 1) + ". " + siparisler[i].isim);
+                    yazdir("Adet: " + siparisler[i].adet);
+                    yazdir("Birim Fiyatı: " + siparisler[i].fiyat);
+                    yazdir("Toplam: " + siparisler[i].toplam);
+                    yazdir("");
+                }
+
+
+
+                var genelToplam = 0;
+                for (var i = 0; i < siparisler.length; i++) {
+                    genelToplam = genelToplam + siparisler[i].toplam;
+                }
+
+                yazdir("*** Genel Toplam Tutar: " + genelToplam + " TL ***");
+                yazdir("");
+            }
+
+
+
+            if (genelToplam > 100) {
+                var indirim = genelToplam * 0.10;
+                var yeniToplam = genelToplam - indirim;
+
+                yazdir("100 TL üzeri sipariş verdiğiniz için %10 indiirm kazandınız.");
+                yazdir("*** Kazandığınız İndirim Tutarı: " + indirim + " TL'dir. ***");
+                yazdir("*** Ödeyeceğiniz Tutar: " + yeniToplam + " TL'dir");
+
+
+                yazdir("");
+                yazdir("*** Siparişiniz alındı, Afiyet Olsun! ***");
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+        };
+
+        restoranSiparisUygulamasi();
+
+    </script>
+</body>
+
+</html>
